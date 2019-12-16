@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Test Hometasks" verbose="1" >
+    <test name="Verify Test" >
+        <classes>
+            <class name="com.lecture15.VerifyTest" />
+        </classes>
+    </test>
+
+    <test name="Selenium Test">
+        <classes>
+            <class name="com.lecture16.SeleniumTest"/>
+        </classes>
+    </test>
+</suite>
