@@ -14,25 +14,25 @@ import static org.testng.Assert.*;
 
 public class AddOwner {
 
-    WebDriver petClinic;
+    WebDriver driver;
     WebElement firstName, lastName,address,city,phone,submit;
 
     @BeforeClass
     public void beforeClass() {
         WebDriverManager.chromedriver().setup();
-        petClinic = new ChromeDriver();
-        petClinic.manage().timeouts().implicitlyWait(5000,TimeUnit.MILLISECONDS);
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5000,TimeUnit.MILLISECONDS);
     }
 
     @Test(priority = 1)
     public void recheckAllFieldsArePresentOnPage() {
-        petClinic.get("http://139.59.149.247:8000/petclinic/owners/add");
-        firstName = petClinic.findElement(By.name("firstName"));
-        lastName = petClinic.findElement(By.name("lastName"));
-        address = petClinic.findElement(By.id("address"));
-        city = petClinic.findElement(By.id("city"));
-        phone = petClinic.findElement(By.name("telephone"));
-        submit = petClinic.findElement(By.cssSelector(".btn[type='submit']"));
+        driver.get("http://139.59.149.247:8000/petclinic/owners/add");
+        firstName = driver.findElement(By.name("firstName"));
+        lastName = driver.findElement(By.name("lastName"));
+        address = driver.findElement(By.id("address"));
+        city = driver.findElement(By.id("city"));
+        phone = driver.findElement(By.name("telephone"));
+        submit = driver.findElement(By.cssSelector(".btn[type='submit']"));
         assertTrue(firstName.isDisplayed());
         assertTrue(lastName.isDisplayed());
         assertTrue(city.isDisplayed());
@@ -58,13 +58,13 @@ public class AddOwner {
          address.sendKeys("23 Oak Road");
          phone.sendKeys("123456");
          submit.click();
-         String currentUrl =petClinic.getCurrentUrl();
+         String currentUrl = driver.getCurrentUrl();
          assertEquals(currentUrl,"http://139.59.149.247:8000/petclinic/owners");
     }
 
 
     @AfterClass
     public void afterClass() {
-        petClinic.quit();
+        driver.quit();
     }
 }
