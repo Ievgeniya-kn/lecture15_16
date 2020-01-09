@@ -9,7 +9,7 @@ public class PetsPage extends BasePage {
     private WebElement name;
     private By nameId = By.id("name");
     private By saveBtn = By.xpath("//*[text()='Save']");
-    private By addBtn = By.xpath("//*[text()=' Add']");
+    private By addBtn = By.xpath("//*[text()=' Add ']");
 
 
     public PetsPage(WebDriver driver) {

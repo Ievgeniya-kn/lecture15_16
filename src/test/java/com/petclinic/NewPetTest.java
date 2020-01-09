@@ -13,7 +13,7 @@ import org.testng.annotations.TestInstance;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class NewPetTest extends BasePage {
+public class NewPetTest extends TestBase {
 
     Pet pet;
     PetsPage petsPage;
@@ -27,9 +27,6 @@ public class NewPetTest extends BasePage {
         petsPage.clickAddPetButton();
     }
 
-    public NewPetTest(WebDriver driver) {
-        super(driver);
-    }
 
     @Test
     public void verifyAddNewPet()    {
