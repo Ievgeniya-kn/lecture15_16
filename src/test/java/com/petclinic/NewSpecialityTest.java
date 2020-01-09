@@ -1,4 +1,39 @@
 package com.petclinic;
 
-public class NewSpecialityTest {
+import com.petclinic.pageobject.SpecialtiesPage;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
+public class NewSpecialityTest extends TestBase{
+
+    Specialties specialties;
+    SpecialtiesPage specialtiesPage;
+
+
+    @BeforeClass
+    public void beforeClass() {
+        specialties = new Specialties();
+        specialtiesPage = new SpecialtiesPage(driver);
+        specialtiesPage.openPage();
+        specialtiesPage.clickAddSpecialitiestButton();
+    }
+
+
+    @Test
+    public void verifyAddNewSpecialist()    {
+        specialtiesPage.setName("Dentist");
+
+        specialtiesPage.clickAddSpecialitiestButton();
+        assertFalse(specialtiesPage.verifySaveBtnIsDisabled());
+    }
+
+    @Test
+    public void verifySpecialisttNameIsRequired()    {
+        specialtiesPage.setName("");
+        specialtiesPage.clickSaveSpecialitiestButton();
+        assertTrue(specialtiesPage.verifySaveBtnIsDisabled());
+    }
 }

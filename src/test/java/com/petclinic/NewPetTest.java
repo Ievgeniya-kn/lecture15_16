@@ -1,14 +1,8 @@
 package com.petclinic;
 
-import com.petclinic.pageobject.BasePage;
-import com.petclinic.pageobject.OwnersPage;
 import com.petclinic.pageobject.PetsPage;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.annotations.TestInstance;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -30,19 +24,16 @@ public class NewPetTest extends TestBase {
 
     @Test
     public void verifyAddNewPet()    {
-        pet = new Pet();
-        pet.setName("Cat");
-
+        petsPage.setName("Shark");
         petsPage.clickSavePetButton();
-        assertFalse(petsPage.verifySaveBtnIsEnabled());
+        assertFalse(petsPage.verifySaveBtnIsDisabled());
     }
 
     @Test
     public void verifyPetNameIsRequired()    {
-        pet = new Pet();
-        pet.setName("");
+        petsPage.setName("");
         petsPage.clickSavePetButton();
-        assertTrue(petsPage.verifySaveBtnIsEnabled());
+        assertTrue(petsPage.verifySaveBtnIsDisabled());
     }
 
 }

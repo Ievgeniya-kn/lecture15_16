@@ -37,7 +37,7 @@ public class PetsPage extends BasePage {
         savePet.click();
     }
 
-    public boolean verifySaveBtnIsEnabled() {
+    public boolean verifySaveBtnIsDisabled() {
         boolean saveIsEnabled = true;
         try {
             WebElement savePet = driver.findElement(saveBtn);
