@@ -24,16 +24,14 @@ public class NewSpecialityTest extends TestBase{
 
     @Test
     public void verifyAddNewSpecialist()    {
-        specialtiesPage.setName("Dentist");
+        specialtiesPage.addSpeciality("Dentist");
 
-        specialtiesPage.clickAddSpecialitiestButton();
         assertFalse(specialtiesPage.verifySaveBtnIsDisabled());
     }
 
     @Test
     public void verifySpecialisttNameIsRequired()    {
-        specialtiesPage.setName("");
-        specialtiesPage.clickSaveSpecialitiestButton();
+        specialtiesPage.addSpeciality("");
         assertTrue(specialtiesPage.verifySaveBtnIsDisabled());
     }
 }

@@ -20,10 +20,11 @@ public class SpecialtiesPage extends BasePage {
         return this;
     }
 
-    public void setName(String name) {
+    public void addSpeciality(String name) {
         WebElement nameField = driver.findElement(nameId);
         nameField.clear();
         nameField.sendKeys(name);
+        clickSaveSpecialitiestButton();
     }
 
     public void clickAddSpecialitiestButton() {

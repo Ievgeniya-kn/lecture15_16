@@ -24,15 +24,13 @@ public class NewPetTest extends TestBase {
 
     @Test
     public void verifyAddNewPet()    {
-        petsPage.setName("Shark");
-        petsPage.clickSavePetButton();
+        petsPage.addPet("Shark");
         assertFalse(petsPage.verifySaveBtnIsDisabled());
     }
 
     @Test
     public void verifyPetNameIsRequired()    {
-        petsPage.setName("");
-        petsPage.clickSavePetButton();
+        petsPage.addPet("");
         assertTrue(petsPage.verifySaveBtnIsDisabled());
     }
 
