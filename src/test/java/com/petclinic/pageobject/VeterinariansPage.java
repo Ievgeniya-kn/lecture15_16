@@ -10,12 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VeterinariansPage extends BasePage{
+
+    private By addButton=By.xpath("//*[text()='Add Vet']");
+
     public VeterinariansPage(WebDriver driver) {
         super(driver);
     }
 
     public VeterinariansPage openPage() {
         goToUrl("/vets", "Veterinarians");
+        waitUntilElementVisible("Add Button",addButton);
         return this;
     }
 
@@ -43,7 +47,8 @@ public class VeterinariansPage extends BasePage{
     }
 
     public NewVeterinarianPage clickAddVetButton() {
-        WebElement addVetButton = driver.findElement(By.xpath("//*[text()='Add Vet']"));
+        WebElement addVetButton = driver.findElement(addButton);
+        waitUntilClickable("Add button", addButton);
         addVetButton.click();
         return new NewVeterinarianPage(driver);
     }
@@ -58,7 +63,6 @@ public class VeterinariansPage extends BasePage{
         } else {
             veterinarian.setFirstName(fullNameArray[0]);
         }
-
 
         return veterinarian;
     }

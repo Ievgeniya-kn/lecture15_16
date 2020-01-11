@@ -4,6 +4,8 @@ import com.petclinic.Pet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PetsPage extends BasePage {
     private WebElement name;
@@ -30,23 +32,19 @@ public class PetsPage extends BasePage {
 
     public void clickAddPetButton() {
         WebElement addPetBtn = driver.findElement(addBtn);
+        waitUntilClickable("Add Button",addBtn);
         addPetBtn.click();
     }
 
     public void clickSavePetButton() {
         WebElement savePet = driver.findElement(saveBtn);
+        waitUntilClickable("Save Button",saveBtn);
         savePet.click();
     }
 
-    public boolean verifySaveBtnIsDisabled() {
-        boolean saveIsEnabled = true;
-        try {
-            WebElement savePet = driver.findElement(saveBtn);
 
-        } catch (Exception ex) {
-            saveIsEnabled = false;
-        }
-        return saveIsEnabled;
+    public boolean verifySaveBtnIsDisabled() {
+        return verifyBtnIsDisabled(saveBtn);
     }
 
 }

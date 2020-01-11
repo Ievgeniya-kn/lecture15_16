@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     private static final String BASE_URL = "http://139.59.149.247:8000/petclinic";
-
     public WebDriver driver;
 
     @BeforeClass
@@ -27,10 +26,6 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
     }
 
-//    @BeforeMethod
-//    public void setUp() {
-//
-//    }
 
     @AfterClass
     public void tearDown() {
@@ -48,15 +43,15 @@ public class TestBase {
     }
 
     protected void goToVetsPage() {
-        goToUrl(BASE_URL + "/vets","Veterinarians");
+        goToUrl(BASE_URL + "/vets", "Veterinarians");
     }
 
     protected void goToPetTypesPage() {
-        goToUrl(BASE_URL + "/pettypes",  "Pet Types");
+        goToUrl(BASE_URL + "/pettypes", "Pet Types");
     }
 
     protected void goToSpecialtiesPage() {
-        goToUrl(BASE_URL + "/specialties",  "Specialties");
+        goToUrl(BASE_URL + "/specialties", "Specialties");
     }
 
     protected WebDriverWait waitFor() {
@@ -65,7 +60,7 @@ public class TestBase {
 
     private void goToUrl(String url, String title) {
         driver.get(url);
-        waitFor().withMessage(title+ " page is not open!")
+        waitFor().withMessage(title + " page is not open!")
                 .until(ExpectedConditions.textToBe(By.xpath("//h2"), title));
     }
 

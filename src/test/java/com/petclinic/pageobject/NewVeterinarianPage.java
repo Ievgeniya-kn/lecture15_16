@@ -14,15 +14,16 @@ public class NewVeterinarianPage {
     private By firstNameId = By.id("firstName");
     private By lastNameId = By.id("lastName");
     private By typeId = By.id("specialties");
+    private By saveVetButton = By.xpath("//*[text()='Save Vet']");
 
 
     public NewVeterinarianPage(WebDriver driver) {
-        this.driver = driver;
+        this.driver=driver;
     }
 
     public By returnByForField(String fieldName) {
         switch (fieldName) {
-            case "Last name":
+            case "lastName":
                 return lastNameId;
             case "Type":
                 return typeId;
@@ -58,15 +59,15 @@ public class NewVeterinarianPage {
         }
     }
 
-
     public void setType() {
-        Select type = new Select (driver.findElement(typeId));
+        Select type = new Select(driver.findElement(typeId));
         type.selectByIndex(0);
     }
 
 
     public VeterinariansPage clickAddVetButton() {
-        WebElement addVetBtn = driver.findElement(By.xpath("//*[text()='Save Vet']"));
+        WebElement addVetBtn = driver.findElement(saveVetButton);
+
         addVetBtn.click();
         return new VeterinariansPage(driver);
     }

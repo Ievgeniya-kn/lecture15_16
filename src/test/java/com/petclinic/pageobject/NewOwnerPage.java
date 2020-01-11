@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.petclinic.Owner;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.Key;
 
@@ -14,12 +16,14 @@ import static org.testng.Assert.assertTrue;
 public class NewOwnerPage {
 
     private WebDriver driver;
+    private WebDriverWait waitFor;
     private WebElement lastNameField;
     private By firstNameId = By.id("firstName");
     private By lastNameId = By.id("lastName");
     private By addressId = By.id("address");
     private By telephoneId = By.id("telephone");
     private By cityId = By.id("city");
+    private By addOwnerButton = By.xpath("//*[text()='Add Owner']");
 
     public NewOwnerPage(WebDriver driver) {
         this.driver = driver;
@@ -89,14 +93,17 @@ public class NewOwnerPage {
     }
 
     public OwnersPage clickAddOwnerButton() {
-        WebElement addOwnerBtn = driver.findElement(By.xpath("//*[text()='Add Owner']"));
+        WebElement addOwnerBtn = driver.findElement(addOwnerButton);
+        waitFor = new WebDriverWait(driver,1);
+        waitFor.until(ExpectedConditions.elementToBeClickable(addOwnerButton));
         addOwnerBtn.click();
         return new OwnersPage(driver);
     }
 
     public WebElement errorMessage(String errorMessage) {
         By xpathErrorMessage = By.xpath("//*[@class='help-block'][text()='" + errorMessage + "']");
-
+        waitFor = new WebDriverWait(driver,1);
+        waitFor.until(ExpectedConditions.textToBePresentInElementLocated(xpathErrorMessage, errorMessage));
         WebElement errorMessageElement = driver.findElement(xpathErrorMessage);
         return errorMessageElement;
     }

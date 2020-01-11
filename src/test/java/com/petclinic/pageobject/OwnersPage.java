@@ -4,10 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.petclinic.Owner;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OwnersPage extends BasePage {
+    private By addOwnerBtnPath = By.xpath("//*[text()='Add Owner']");
+    private By ownersTablePath = By.cssSelector(".ownerFullName>a");
 
     public OwnersPage(WebDriver driver) {
         super(driver);
@@ -20,8 +23,8 @@ public class OwnersPage extends BasePage {
 
     public List<String> getOwnersNames() {
         List<String> owners = new ArrayList<>();
-
-        List<WebElement> elements = driver.findElements(By.cssSelector(".ownerFullName>a"));
+        waitUtilTableVisible(ownersTablePath);
+        List<WebElement> elements = driver.findElements(ownersTablePath);
         for (WebElement fullName : elements) {
             owners.add(fullName.getText());
         }
@@ -32,7 +35,7 @@ public class OwnersPage extends BasePage {
     public List<Owner> getOwnersList() {
         List<Owner> owners = new ArrayList<>();
         WebElement ownersTable = driver.findElement(By.xpath("//*[@class='table-responsive']"));
-
+        waitUtilTableVisible(ownersTablePath);
         List<WebElement> ownersList = ownersTable.findElements(By.xpath(".//tbody/tr"));
         for (WebElement userRow : ownersList) {
             owners.add(createOwner(userRow));
@@ -42,7 +45,8 @@ public class OwnersPage extends BasePage {
     }
 
     public NewOwnerPage clickAddOwnerBtn() {
-        WebElement addOwnerBtn = driver.findElement(By.xpath("//*[text()='Add Owner']"));
+        WebElement addOwnerBtn = driver.findElement(addOwnerBtnPath);
+        waitUntilClickable("Add Owner", addOwnerBtnPath);
         addOwnerBtn.click();
         return new NewOwnerPage(driver);
     }
@@ -62,7 +66,7 @@ public class OwnersPage extends BasePage {
         owner.setTelephone(userRow.findElement(By.xpath("./td[4]")).getText());
 
         String pets = userRow.findElement(By.xpath("./td[5]")).getText();
-        if(!pets.isEmpty()) {
+        if (!pets.isEmpty()) {
             owner.setPets(pets);
         }
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
 
@@ -16,7 +17,7 @@ public class NewOwnersTest extends TestBase {
     OwnersPage ownersPage;
     Owner owner;
     NewOwnerPage newOwnerPage;
-    String firstName= "First name";
+    String firstName = "First name";
     String lastName = "Last name";
     String telephone = "Phone number";
     String isRequired = " is required";
@@ -26,12 +27,11 @@ public class NewOwnersTest extends TestBase {
 
     @BeforeClass
     public void beforeClass() {
-       owner = new Owner();
+        owner = new Owner();
         ownersPage = new OwnersPage(driver);
         ownersPage.openPage();
         newOwnerPage = ownersPage.clickAddOwnerBtn();
     }
-
 
 
     @Test
@@ -53,39 +53,39 @@ public class NewOwnersTest extends TestBase {
     @Test
     public void VerifyFirstNameLength() {
         newOwnerPage.setFirstName("1");
-        assertThat(newOwnerPage.errorMessage(firstName+isMoreThan).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(firstName + isMoreThan).isDisplayed());
     }
 
     @Test
     public void VerifyLastNameLength() {
         newOwnerPage.setLastName("1");
-        assertThat(newOwnerPage.errorMessage(lastName+isMoreThan).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(lastName + isMoreThan).isDisplayed());
     }
 
     @Test
     public void VerifyPhone() {
         newOwnerPage.setTelephone("1wqewq");
-        assertThat(newOwnerPage.errorMessage(telephone+isDigitsOnly).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(telephone + isDigitsOnly).isDisplayed());
     }
 
 
     @Test
     public void VerifyFirstNameRequired() {
         newOwnerPage.clearField("firstName");
-          assertThat(newOwnerPage.errorMessage(firstName+isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(firstName + isRequired).isDisplayed());
     }
 
     @Test
     public void VerifyLastNameRequired() {
         newOwnerPage.clearField("Last name");
-        assertThat(newOwnerPage.errorMessage(lastName+isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(lastName + isRequired).isDisplayed());
     }
+
     @Test
     public void VerifyPhoneRequired() {
         newOwnerPage.clearField("Phone");
-        assertThat(newOwnerPage.errorMessage(telephone+isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(telephone + isRequired).isDisplayed());
     }
-
 
 
 }

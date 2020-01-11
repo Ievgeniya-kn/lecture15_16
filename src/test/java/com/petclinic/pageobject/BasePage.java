@@ -19,25 +19,49 @@ public abstract class BasePage {
 
 
     protected WebDriverWait waitFor() {
-        return new WebDriverWait(driver, 4);
+        return new WebDriverWait(driver, 2);
     }
 
     protected void goToUrl(String url, String title) {
         driver.get(BASE_URL + url);
-        waitFor().withMessage(title+ " page is not open!")
+        waitFor().withMessage(title + " page is not open!")
                 .until(ExpectedConditions.textToBe(By.xpath("//h2"), title));
     }
 
-    public void clearField(String fieldId){
+    public void clearField(String fieldId) {
 
         WebElement field = driver.findElement(By.id(fieldId));
         field.sendKeys("234");
-        while (field.getAttribute("value").length()>0) {
+        while (field.getAttribute("value").length() > 0) {
             field.sendKeys("\u0008");
         }
     }
 
-//    waitFor().withMessage("Field '" + fieldName + "' not found!").until(ExpectedConditions.and(
-//            ExpectedConditions.textToBe(By.xpath("//*[@for='" + fieldId + "']"), fieldName),
-//            ExpectedConditions.presenceOfElementLocated(By.id(fieldId))
+    protected boolean verifyBtnIsDisabled(By button) {
+        boolean saveIsEnabled = true;
+        waitFor().withMessage("button is still enabled")
+                .until(ExpectedConditions.invisibilityOf(driver.findElement(button)));
+
+        try {
+            WebElement savePet = driver.findElement(button);
+
+        } catch (Exception ex) {
+            saveIsEnabled = false;
+        }
+        return saveIsEnabled;
+    }
+
+    protected void waitUntilElementVisible(String elementName, By elementPath) {
+        waitFor().withMessage(elementName + " isn't enabled")
+                .until(ExpectedConditions.visibilityOf(driver.findElement(elementPath)));
+    }
+
+    protected void waitUtilTableVisible(By tablePath) {
+        waitFor().until(ExpectedConditions.presenceOfAllElementsLocatedBy(tablePath));
+    }
+
+    protected void waitUntilClickable(String elementName, By elementPath) {
+        waitFor().withMessage(elementName + " not clickable")
+                .until(ExpectedConditions.elementToBeClickable(elementPath));
+    }
 }

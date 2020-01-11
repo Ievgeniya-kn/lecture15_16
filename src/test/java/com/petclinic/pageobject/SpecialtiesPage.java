@@ -3,10 +3,13 @@ package com.petclinic.pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SpecialtiesPage extends BasePage {
 
     private WebElement name;
+    private WebDriverWait wait;
     private By nameId = By.id("name");
     private By saveBtn = By.xpath("//*[text()='Save']");
     private By addBtn = By.xpath("//*[text()=' Add ']");
@@ -17,6 +20,7 @@ public class SpecialtiesPage extends BasePage {
 
     public SpecialtiesPage openPage() {
         goToUrl("/specialties", "Specialties");
+        waitUntilElementVisible("Add button",addBtn);
         return this;
     }
 
@@ -29,22 +33,18 @@ public class SpecialtiesPage extends BasePage {
 
     public void clickAddSpecialitiestButton() {
         WebElement addSpecialitiestBtn = driver.findElement(addBtn);
+        waitUntilClickable("Add Button",addBtn);
         addSpecialitiestBtn.click();
     }
 
     public void clickSaveSpecialitiestButton() {
         WebElement saveSpecialitiest = driver.findElement(saveBtn);
+        waitUntilClickable("Save button", saveBtn);
         saveSpecialitiest.click();
     }
 
-    public boolean verifySaveBtnIsDisabled() {
-        boolean saveIsEnabled = true;
-        try {
-            WebElement savePet = driver.findElement(saveBtn);
 
-        } catch (Exception ex) {
-            saveIsEnabled = false;
-        }
-        return saveIsEnabled;
+    public boolean verifySaveBtnIsDisabled() {
+        return verifyBtnIsDisabled(saveBtn);
     }
 }
