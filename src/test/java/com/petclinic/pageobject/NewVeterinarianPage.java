@@ -7,9 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class NewVeterinarianPage {
+public class NewVeterinarianPage extends BasePage {
 
-    private WebDriver driver;
+    //    private WebDriver driver;
     private WebElement lastNameField;
     private By firstNameId = By.id("firstName");
     private By lastNameId = By.id("lastName");
@@ -18,7 +18,7 @@ public class NewVeterinarianPage {
 
 
     public NewVeterinarianPage(WebDriver driver) {
-        this.driver=driver;
+        super(driver);
     }
 
     public By returnByForField(String fieldName) {
@@ -67,7 +67,7 @@ public class NewVeterinarianPage {
 
     public VeterinariansPage clickAddVetButton() {
         WebElement addVetBtn = driver.findElement(saveVetButton);
-
+        waitUntilClickable("Save button", saveVetButton);
         addVetBtn.click();
         return new VeterinariansPage(driver);
     }

@@ -13,9 +13,9 @@ import java.security.Key;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class NewOwnerPage {
+public class NewOwnerPage extends BasePage{
 
-    private WebDriver driver;
+//    private WebDriver driver;
     private WebDriverWait waitFor;
     private WebElement lastNameField;
     private By firstNameId = By.id("firstName");
@@ -26,7 +26,7 @@ public class NewOwnerPage {
     private By addOwnerButton = By.xpath("//*[text()='Add Owner']");
 
     public NewOwnerPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public By returnByForField(String fieldName) {
@@ -94,14 +94,15 @@ public class NewOwnerPage {
 
     public OwnersPage clickAddOwnerButton() {
         WebElement addOwnerBtn = driver.findElement(addOwnerButton);
-        waitFor = new WebDriverWait(driver,1);
-        waitFor.until(ExpectedConditions.elementToBeClickable(addOwnerButton));
+        waitUntilClickable("Button Add",addOwnerButton);
+
         addOwnerBtn.click();
         return new OwnersPage(driver);
     }
 
     public WebElement errorMessage(String errorMessage) {
         By xpathErrorMessage = By.xpath("//*[@class='help-block'][text()='" + errorMessage + "']");
+
         waitFor = new WebDriverWait(driver,1);
         waitFor.until(ExpectedConditions.textToBePresentInElementLocated(xpathErrorMessage, errorMessage));
         WebElement errorMessageElement = driver.findElement(xpathErrorMessage);
