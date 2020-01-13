@@ -7,11 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PetsPage extends BasePage {
     private WebElement name;
     private By nameId = By.id("name");
     private By saveBtn = By.xpath("//*[text()='Save']");
     private By addBtn = By.xpath("//*[text()=' Add ']");
+    private By tableId = By.id("pettypes");
+    private By petRowId = By.xpath("//input[@name='pettype_name']");
+    private String buttonDelete = "//following-sibling::td//*[text()='Delete']";
 
 
     public PetsPage(WebDriver driver) {
@@ -32,19 +38,52 @@ public class PetsPage extends BasePage {
 
     public void clickAddPetButton() {
         WebElement addPetBtn = driver.findElement(addBtn);
-        waitUntilClickable("Add Button",addBtn);
+        waitUntilClickable("Add Button", addBtn);
         addPetBtn.click();
     }
 
     public void clickSavePetButton() {
         WebElement savePet = driver.findElement(saveBtn);
-        waitUntilClickable("Save Button",saveBtn);
+        waitUntilClickable("Save Button", saveBtn);
         savePet.click();
     }
 
 
     public boolean verifySaveBtnIsDisabled() {
         return verifyBtnIsDisabled(saveBtn);
+    }
+
+
+    public List<String> getPetTypeList() {
+
+        waitUntilTableVisible(tableId);
+
+        List<String> petTypes = new ArrayList<>();
+
+        List<WebElement> petTypesElements = driver.findElements(petRowId);
+        for (WebElement namePet : petTypesElements
+        ) {
+            petTypes.add(namePet.getAttribute("value"));
+        }
+
+        return petTypes;
+    }
+
+
+    public void pressDeletePet(String petName) {
+        int i = 0;
+        List<WebElement> petTypesElements = driver.findElements(petRowId);
+        for (WebElement namePet : petTypesElements
+        ) {
+            i++;
+            if (petName.equals(namePet.getAttribute("value"))) {
+                System.out.println(namePet.getLocation());
+                WebElement btnDelete = driver.findElement(By.xpath("//table//tr[" + i + "]/td[1]" + buttonDelete));
+                btnDelete.click();
+                waitUntilTableVisible(tableId);
+                i--;
+            }
+        }
     }
 
 }

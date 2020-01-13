@@ -7,8 +7,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class NewPetTest extends TestBase {
+import static org.assertj.core.api.Assertions.assertThat;
 
+public class NewPetTest extends TestBase {
+    private String petName = "Shark";
     Pet pet;
     PetsPage petsPage;
 
@@ -23,15 +25,23 @@ public class NewPetTest extends TestBase {
 
 
     @Test
-    public void verifyAddNewPet()    {
-        petsPage.addPet("Shark");
+    public void verifyAddNewPet() {
+        petsPage.addPet(petName);
         assertFalse(petsPage.verifySaveBtnIsDisabled());
+        assertThat(petsPage.getPetTypeList().contains(petName));
     }
 
     @Test
-    public void verifyPetNameIsRequired()    {
+    public void verifyPetNameIsRequired() {
         petsPage.addPet("");
         assertTrue(petsPage.verifySaveBtnIsDisabled());
+    }
+
+
+    @Test
+    public void petNameDeletePetByName() {
+        petsPage.pressDeletePet(petName);
+        assertFalse(petsPage.getPetTypeList().contains(petName));
     }
 
 }
