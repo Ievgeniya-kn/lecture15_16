@@ -8,30 +8,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.sql.Driver;
 
 public enum Browser {
-    CHROME ("ChromeDriver()","chromedriver()"),
-    FIREFOX ("FirefoxDriver()", "firefoxdriver()");
+    CHROME ( new ChromeDriver()),
+    FIREFOX (new FirefoxDriver());
 
-    private String driverName;
-    private String driver;
 
-    Browser(String driverName, String driver) {
-        this.driverName = driverName;
+    public WebDriver driver;
+
+    Browser(WebDriver driver) {
         this.driver = driver;
     }
 
-    public String getDriverName() {
-        return driverName;
-    }
-
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
-    }
-
-    public String getDriver() {
+    public WebDriver getDriver() {
         return driver;
     }
 
-    public void setDriver(String driver) {
+    public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
 
