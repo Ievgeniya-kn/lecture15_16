@@ -53,38 +53,38 @@ public class NewOwnersTest extends TestBase {
     @Test
     public void VerifyFirstNameLength() {
         newOwnerPage.setFirstName("1");
-        assertThat(newOwnerPage.errorMessage(firstName + isMoreThan).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(firstName + isMoreThan).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyLastNameLength() {
         newOwnerPage.setLastName("1");
-        assertThat(newOwnerPage.errorMessage(lastName + isMoreThan).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(lastName + isMoreThan).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyPhone() {
         newOwnerPage.setTelephone("1wqewq");
-        assertThat(newOwnerPage.errorMessage(telephone + isDigitsOnly).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(telephone + isDigitsOnly).isDisplayed()).isTrue();
     }
 
 
     @Test
     public void VerifyFirstNameRequired() {
         newOwnerPage.clearField("firstName");
-        assertThat(newOwnerPage.errorMessage(firstName + isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(firstName + isRequired).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyLastNameRequired() {
         newOwnerPage.clearField("Last name");
-        assertThat(newOwnerPage.errorMessage(lastName + isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(lastName + isRequired).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyPhoneRequired() {
         newOwnerPage.clearField("Phone");
-        assertThat(newOwnerPage.errorMessage(telephone + isRequired).isDisplayed());
+        assertThat(newOwnerPage.errorMessage(telephone + isRequired).isDisplayed()).isTrue();
     }
 
 

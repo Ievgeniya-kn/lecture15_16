@@ -20,7 +20,7 @@ public class SpecialtiesPage extends BasePage {
 
     public SpecialtiesPage openPage() {
         goToUrl("/specialties", "Specialties");
-        waitUntilElementVisible("Add button",addBtn);
+        WebElement addButton = waitUntilElementVisible("Add button",addBtn);
         return this;
     }
 
@@ -32,14 +32,12 @@ public class SpecialtiesPage extends BasePage {
     }
 
     public void clickAddSpecialitiestButton() {
-        WebElement addSpecialitiestBtn = driver.findElement(addBtn);
-        waitUntilClickable("Add Button",addBtn);
+        WebElement addSpecialitiestBtn =  waitUntilClickable("Add Button",addBtn);
         addSpecialitiestBtn.click();
     }
 
     public void clickSaveSpecialitiestButton() {
-        WebElement saveSpecialitiest = driver.findElement(saveBtn);
-        waitUntilClickable("Save button", saveBtn);
+        WebElement saveSpecialitiest = waitUntilClickable("Save button", saveBtn);
         saveSpecialitiest.click();
     }
 

@@ -66,8 +66,7 @@ public class NewVeterinarianPage extends BasePage {
 
 
     public VeterinariansPage clickAddVetButton() {
-        WebElement addVetBtn = driver.findElement(saveVetButton);
-        waitUntilClickable("Save button", saveVetButton);
+        WebElement addVetBtn =  waitUntilClickable("Save button", saveVetButton);
         addVetBtn.click();
         return new VeterinariansPage(driver);
     }

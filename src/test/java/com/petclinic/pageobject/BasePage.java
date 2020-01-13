@@ -51,17 +51,20 @@ public abstract class BasePage {
         return saveIsEnabled;
     }
 
-    protected void waitUntilElementVisible(String elementName, By elementPath) {
+    protected WebElement waitUntilElementVisible(String elementName, By elementPath) {
         waitFor().withMessage(elementName + " isn't enabled")
                 .until(ExpectedConditions.visibilityOf(driver.findElement(elementPath)));
+
+        return driver.findElement(elementPath);
     }
 
-    protected void waitUtilTableVisible(By tablePath) {
+    protected void waitUntilTableVisible(By tablePath) {
         waitFor().until(ExpectedConditions.presenceOfAllElementsLocatedBy(tablePath));
     }
 
-    protected void waitUntilClickable(String elementName, By elementPath) {
+    protected WebElement waitUntilClickable(String elementName, By elementPath) {
         waitFor().withMessage(elementName + " not clickable")
                 .until(ExpectedConditions.elementToBeClickable(elementPath));
+        return driver.findElement(elementPath);
     }
 }

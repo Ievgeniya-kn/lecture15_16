@@ -23,7 +23,7 @@ public class OwnersPage extends BasePage {
 
     public List<String> getOwnersNames() {
         List<String> owners = new ArrayList<>();
-        waitUtilTableVisible(ownersTablePath);
+        waitUntilTableVisible(ownersTablePath);
         List<WebElement> elements = driver.findElements(ownersTablePath);
         for (WebElement fullName : elements) {
             owners.add(fullName.getText());
@@ -35,7 +35,7 @@ public class OwnersPage extends BasePage {
     public List<Owner> getOwnersList() {
         List<Owner> owners = new ArrayList<>();
         WebElement ownersTable = driver.findElement(By.xpath("//*[@class='table-responsive']"));
-        waitUtilTableVisible(ownersTablePath);
+        waitUntilTableVisible(ownersTablePath);
         List<WebElement> ownersList = ownersTable.findElements(By.xpath(".//tbody/tr"));
         for (WebElement userRow : ownersList) {
             owners.add(createOwner(userRow));

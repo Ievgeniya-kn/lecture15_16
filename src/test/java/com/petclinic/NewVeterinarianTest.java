@@ -51,26 +51,26 @@ public class NewVeterinarianTest extends TestBase{
     @Test
     public void VerifyFirstNameLength() {
         newVeterinarianPage.setFirstName("1");
-        assertThat(newVeterinarianPage.errorMessage(firstName+isMoreThan).isDisplayed());
+        assertThat(newVeterinarianPage.errorMessage(firstName+isMoreThan).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyLastNameLength() {
         newVeterinarianPage.setLastName("1");
-        assertThat(newVeterinarianPage.errorMessage(lastName+isMoreThan).isDisplayed());
+        assertThat(newVeterinarianPage.errorMessage(lastName+isMoreThan).isDisplayed()).isTrue();
     }
 
 
     @Test
     public void VerifyFirstNameRequired() {
         newVeterinarianPage.clearField("firstName");
-        assertThat(newVeterinarianPage.errorMessage(firstName+isRequired).isDisplayed());
+        assertThat(newVeterinarianPage.errorMessage(firstName+isRequired).isDisplayed()).isTrue();
     }
 
     @Test
     public void VerifyLastNameRequired() {
         newVeterinarianPage.clearField("lastName");
-        assertThat(newVeterinarianPage.errorMessage(lastName+isRequired).isDisplayed());
+        assertThat(newVeterinarianPage.errorMessage(lastName+isRequired).isDisplayed()).isTrue();
     }
 
 

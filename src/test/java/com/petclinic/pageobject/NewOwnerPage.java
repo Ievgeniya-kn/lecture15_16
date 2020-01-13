@@ -93,8 +93,7 @@ public class NewOwnerPage extends BasePage{
     }
 
     public OwnersPage clickAddOwnerButton() {
-        WebElement addOwnerBtn = driver.findElement(addOwnerButton);
-        waitUntilClickable("Button Add",addOwnerButton);
+        WebElement addOwnerBtn = waitUntilClickable("Button Add",addOwnerButton);
 
         addOwnerBtn.click();
         return new OwnersPage(driver);

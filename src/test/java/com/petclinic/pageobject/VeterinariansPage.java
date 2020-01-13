@@ -19,7 +19,7 @@ public class VeterinariansPage extends BasePage{
 
     public VeterinariansPage openPage() {
         goToUrl("/vets", "Veterinarians");
-        waitUntilElementVisible("Add Button",addButton);
+        WebElement addBtn = waitUntilElementVisible("Add Button",addButton);
         return this;
     }
 
@@ -47,8 +47,7 @@ public class VeterinariansPage extends BasePage{
     }
 
     public NewVeterinarianPage clickAddVetButton() {
-        WebElement addVetButton = driver.findElement(addButton);
-        waitUntilClickable("Add button", addButton);
+        WebElement addVetButton = waitUntilClickable("Add button", addButton);
         addVetButton.click();
         return new NewVeterinarianPage(driver);
     }
