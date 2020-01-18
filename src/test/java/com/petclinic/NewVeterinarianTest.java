@@ -43,7 +43,7 @@ public class NewVeterinarianTest extends TestBase{
 
         newVeterinarianPage.fillVeterinarian(veterinarian);
         veterinariansPage = newVeterinarianPage.clickAddVetButton();
-
+        goToVetsPage();
         List<Veterinarian> veterinariansNames = veterinariansPage.getveterinariansList();
         assertThat(veterinariansNames).contains(veterinarian);
     }

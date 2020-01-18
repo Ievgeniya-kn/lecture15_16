@@ -26,6 +26,8 @@ public class PetsPage extends BasePage {
 
     public PetsPage openPage() {
         goToUrl("/pettypes", "Pet Types");
+
+        WebElement addButton = waitUntilElementVisible("Add button", addBtn);
         return this;
     }
 
@@ -37,9 +39,18 @@ public class PetsPage extends BasePage {
     }
 
     public void clickAddPetButton() {
-        WebElement addPetBtn = driver.findElement(addBtn);
-        waitUntilClickable("Add Button", addBtn);
+        WebElement addPetBtn = waitUntilClickable("Add Button", addBtn);
+//addPetBtn.clear();
+//        waitUntilClickable("Add Button", addBtn);
         addPetBtn.click();
+    }
+
+    public void ifButtonDisabledPressAdd() {
+        try {
+            driver.findElement(nameId);
+        } catch(Exception ex) {
+            clickAddPetButton();
+        }
     }
 
     public void clickSavePetButton() {

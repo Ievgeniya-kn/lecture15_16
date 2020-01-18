@@ -46,6 +46,7 @@ public class NewOwnersTest extends TestBase {
         newOwnerPage.fillOwner(owner);
         ownersPage = newOwnerPage.clickAddOwnerButton();
 
+        goToOwnersPage();
         List<Owner> ownersNames = ownersPage.getOwnersList();
         assertThat(ownersNames).contains(owner);
     }

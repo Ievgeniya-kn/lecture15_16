@@ -19,6 +19,7 @@
     </test>
     <test name="Pet Clinic">
         <classes>
+            <class name="com.petclinic.TestBase"/>
             <class name="com.petclinic.NewOwnersTest"/>
             <class name="com.petclinic.NewVeterinarianTest"/>
             <class name="com.petclinic.NewPetTest"/>

@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NewSpecialityTest extends TestBase{
+public class NewSpecialityTest extends TestBase {
 
     private String specialityInput = "Dentist";
     Specialties specialties;
@@ -26,7 +26,7 @@ public class NewSpecialityTest extends TestBase{
 
 
     @Test
-    public void verifyAddNewSpecialist()    {
+    public void verifyAddNewSpecialist() {
         specialtiesPage.addSpeciality(specialityInput);
 
         assertFalse(specialtiesPage.verifySaveBtnIsDisabled());
@@ -34,9 +34,10 @@ public class NewSpecialityTest extends TestBase{
     }
 
     @Test
-    public void verifySpecialisttNameIsRequired()    {
+    public void verifySpecialisttNameIsRequired() {
+        specialtiesPage.ifButtonDisabledPressAdd();
         specialtiesPage.addSpeciality("");
-        assertTrue(specialtiesPage.verifySaveBtnIsDisabled());
+        assertFalse(specialtiesPage.verifySaveBtnIsDisabled());
     }
 
     @Test

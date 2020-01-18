@@ -39,10 +39,10 @@ public abstract class BasePage {
 
     protected boolean verifyBtnIsDisabled(By button) {
         boolean saveIsEnabled = true;
-        waitFor().withMessage("button is still enabled")
-                .until(ExpectedConditions.invisibilityOf(driver.findElement(button)));
 
         try {
+            waitFor().withMessage("button is still enabled")
+                    .until(ExpectedConditions.invisibilityOf(driver.findElement(button)));
             WebElement savePet = driver.findElement(button);
 
         } catch (Exception ex) {

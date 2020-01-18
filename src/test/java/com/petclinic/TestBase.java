@@ -22,10 +22,10 @@ public class TestBase {
 
     @BeforeClass
     public void setUpDriver() {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-        driver = new Configuration().initDriver();
-        driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+//        driver = new Configuration().initDriver();
+//        driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
     }
 
 

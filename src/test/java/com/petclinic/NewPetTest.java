@@ -33,8 +33,9 @@ public class NewPetTest extends TestBase {
 
     @Test
     public void verifyPetNameIsRequired() {
+        petsPage.ifButtonDisabledPressAdd();
         petsPage.addPet("");
-        assertTrue(petsPage.verifySaveBtnIsDisabled());
+        assertFalse(petsPage.verifySaveBtnIsDisabled());
     }
 
 

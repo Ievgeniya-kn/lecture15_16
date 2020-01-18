@@ -36,7 +36,7 @@ public class VeterinariansPage extends BasePage{
 
     public List<Veterinarian> getveterinariansList() {
         List<Veterinarian> veterinarians = new ArrayList<>();
-        WebElement veterinariansTable = driver.findElement(By.id("vets"));
+        WebElement veterinariansTable = driver.findElement(By.cssSelector("table[id='vets']"));
 
         List<WebElement> veterinariansList = veterinariansTable.findElements(By.xpath(".//tbody/tr"));
         for (WebElement userRow : veterinariansList) {

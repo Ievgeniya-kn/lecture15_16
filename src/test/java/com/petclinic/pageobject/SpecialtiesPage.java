@@ -47,6 +47,14 @@ public class SpecialtiesPage extends BasePage {
         saveSpecialitiest.click();
     }
 
+    public void ifButtonDisabledPressAdd() {
+        try {
+            driver.findElement(nameId);
+        } catch(Exception ex) {
+            clickAddSpecialitiestButton();
+        }
+    }
+
 
     public boolean verifySaveBtnIsDisabled() {
         return verifyBtnIsDisabled(saveBtn);
