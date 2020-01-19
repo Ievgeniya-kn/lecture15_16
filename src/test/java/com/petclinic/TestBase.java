@@ -2,6 +2,7 @@ package com.petclinic;
 
 import com.petclinic.pageobject.OwnersPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,15 +22,17 @@ public class TestBase {
     public WebDriver driver;
 
     @BeforeClass
+    @Step("Init WebDriver Chrome")
     public void setUpDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 //        driver = new Configuration().initDriver();
-//        driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
     }
 
 
     @AfterClass
+    @Step("Close Chrome Driver")
     public void tearDown() {
         driver.quit();
     }
@@ -40,10 +43,12 @@ public class TestBase {
         return new OwnersPage(driver);
     }
 
+    @Step("Open New Owner Page")
     protected void goToNewOwnerPage() {
         goToUrl(BASE_URL + "/owners/add", "New Owner");
     }
 
+    @Step("Open Veterinarian Page")
     protected void goToVetsPage() {
         goToUrl(BASE_URL + "/vets", "Veterinarians");
     }
@@ -57,7 +62,7 @@ public class TestBase {
     }
 
     protected WebDriverWait waitFor() {
-        return new WebDriverWait(driver, 4);
+        return new WebDriverWait(driver, 1);
     }
 
     private void goToUrl(String url, String title) {

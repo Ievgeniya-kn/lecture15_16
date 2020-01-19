@@ -1,5 +1,6 @@
 package com.petclinic.pageobject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,12 +23,14 @@ public abstract class BasePage {
         return new WebDriverWait(driver, 2);
     }
 
+    @Step("Open page {title}")
     protected void goToUrl(String url, String title) {
         driver.get(BASE_URL + url);
         waitFor().withMessage(title + " page is not open!")
                 .until(ExpectedConditions.textToBe(By.xpath("//h2"), title));
     }
 
+    @Step("Cleared input field")
     public void clearField(String fieldId) {
 
         WebElement field = driver.findElement(By.id(fieldId));
@@ -37,6 +40,7 @@ public abstract class BasePage {
         }
     }
 
+    @Step("Check if Button is disabled")
     protected boolean verifyBtnIsDisabled(By button) {
         boolean saveIsEnabled = true;
 
@@ -51,6 +55,7 @@ public abstract class BasePage {
         return saveIsEnabled;
     }
 
+    @Step("Wait until element {elementName} isn't displayed")
     protected WebElement waitUntilElementVisible(String elementName, By elementPath) {
         waitFor().withMessage(elementName + " isn't enabled")
                 .until(ExpectedConditions.visibilityOf(driver.findElement(elementPath)));
@@ -58,6 +63,7 @@ public abstract class BasePage {
         return driver.findElement(elementPath);
     }
 
+    @Step("Wait until table isn't displayed")
     protected void waitUntilTableVisible(By tablePath) {
         waitFor().until(ExpectedConditions.presenceOfAllElementsLocatedBy(tablePath));
     }

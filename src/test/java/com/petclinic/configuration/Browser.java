@@ -28,17 +28,4 @@ public enum Browser {
 
 
 
-    //    switch (browser.toLowerCase()) {
-//        case "chrome":
-//            WebDriverManager.chromedriver().setup();
-//            driver = new ChromeDriver();
-//            break;
-//        case "firefox":
-//            WebDriverManager.firefoxdriver().setup();
-//            driver =  new FirefoxDriver();
-//            break;
-//        default:
-//            WebDriverManager.chromedriver().setup();
-//            driver = new ChromeDriver();
-//    }
 }

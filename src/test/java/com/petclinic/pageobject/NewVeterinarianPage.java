@@ -2,6 +2,7 @@ package com.petclinic.pageobject;
 
 import com.petclinic.Owner;
 import com.petclinic.Veterinarian;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class NewVeterinarianPage extends BasePage {
         super(driver);
     }
 
+    @Step("Return Locator for field")
     public By returnByForField(String fieldName) {
         switch (fieldName) {
             case "lastName":
@@ -32,25 +34,28 @@ public class NewVeterinarianPage extends BasePage {
         }
     }
 
+    @Step("Fill Veterinarian")
     public void fillVeterinarian(Veterinarian veterinarian) {
         setFirstName(veterinarian.getFirstName());
         setLastName(veterinarian.getLastName());
         setType();
     }
 
-
+    @Step("Set field='First Name' with value={firstName}")
     public void setFirstName(String firstName) {
         WebElement name = driver.findElement(firstNameId);
         name.clear();
         name.sendKeys(firstName);
     }
 
+    @Step("Set field='Last Name' with {lastName}")
     public void setLastName(String lastName) {
         WebElement lastNameField = driver.findElement(lastNameId);
         lastNameField.clear();
         lastNameField.sendKeys(lastName);
     }
 
+    @Step("Clear Field")
     public void clearField(String fieldName) {
         WebElement nameField = driver.findElement(returnByForField(fieldName));
         nameField.sendKeys("234");
@@ -59,18 +64,20 @@ public class NewVeterinarianPage extends BasePage {
         }
     }
 
+    @Step("Set field='Type' from dropdown by Index=0")
     public void setType() {
         Select type = new Select(driver.findElement(typeId));
         type.selectByIndex(0);
     }
 
-
-    public VeterinariansPage clickAddVetButton() {
+    @Step("Press Button 'Save Veterinarian'")
+    public VeterinariansPage clickSaveVetButton() {
         WebElement addVetBtn =  waitUntilClickable("Save button", saveVetButton);
         addVetBtn.click();
         return new VeterinariansPage(driver);
     }
 
+    @Step("Verify expected message is displayed {errorMessage}")
     public WebElement errorMessage(String errorMessage) {
         By xpathErrorMessage = By.xpath("//*[@class='help-block'][text()='" + errorMessage + "']");
 

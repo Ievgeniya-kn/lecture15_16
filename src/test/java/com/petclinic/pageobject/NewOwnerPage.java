@@ -1,5 +1,6 @@
 package com.petclinic.pageobject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,7 @@ public class NewOwnerPage extends BasePage{
         super(driver);
     }
 
+    @Step("Get Locator for field")
     public By returnByForField(String fieldName) {
         switch (fieldName) {
             case "Last name":
@@ -44,6 +46,7 @@ public class NewOwnerPage extends BasePage{
         }
     }
 
+    @Step("Fill Owner")
     public void fillOwner(Owner owner) {
         setFirstName(owner.getFirstName());
         setLastName(owner.getLastName());
@@ -53,18 +56,20 @@ public class NewOwnerPage extends BasePage{
     }
 
 
+    @Step("Set field='First Name'")
     public void setFirstName(String firstName) {
         WebElement name = driver.findElement(firstNameId);
         name.clear();
         name.sendKeys(firstName);
     }
-
+    @Step("Set field='Last Name'")
     public void setLastName(String lastName) {
         WebElement lastNameField = driver.findElement(lastNameId);
         lastNameField.clear();
         lastNameField.sendKeys(lastName);
     }
 
+    @Step("Clear field")
     public void clearField(String fieldName) {
         WebElement nameField = driver.findElement(returnByForField(fieldName));
         nameField.sendKeys("234");
@@ -73,25 +78,28 @@ public class NewOwnerPage extends BasePage{
         }
     }
 
-
+    @Step("Set field='Address'")
     public void setAddress(String address) {
         WebElement addressField = driver.findElement(addressId);
         addressField.clear();
         addressField.sendKeys(address);
     }
 
+    @Step("Set field='City'")
     public void setCity(String city) {
         WebElement cityField = driver.findElement(cityId);
         cityField.clear();
         cityField.sendKeys(city);
     }
 
+    @Step("Set field='First Name'")
     public void setTelephone(String telephone) {
         WebElement telephoneField = driver.findElement(telephoneId);
         telephoneField.clear();
         telephoneField.sendKeys(telephone);
     }
 
+    @Step("Press button 'Add Owner'")
     public OwnersPage clickAddOwnerButton() {
         WebElement addOwnerBtn = waitUntilClickable("Button Add",addOwnerButton);
 
@@ -99,6 +107,7 @@ public class NewOwnerPage extends BasePage{
         return new OwnersPage(driver);
     }
 
+    @Step("Verify expected message is displayed {errorMessage}")
     public WebElement errorMessage(String errorMessage) {
         By xpathErrorMessage = By.xpath("//*[@class='help-block'][text()='" + errorMessage + "']");
 

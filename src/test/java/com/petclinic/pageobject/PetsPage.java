@@ -1,6 +1,7 @@
 package com.petclinic.pageobject;
 
 import com.petclinic.Pet;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public class PetsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open page /pettypes")
     public PetsPage openPage() {
         goToUrl("/pettypes", "Pet Types");
 
@@ -31,6 +33,7 @@ public class PetsPage extends BasePage {
         return this;
     }
 
+    @Step("Enter per type name = {name}")
     public void addPet(String name) {
         WebElement nameField = driver.findElement(nameId);
         nameField.clear();
@@ -38,6 +41,7 @@ public class PetsPage extends BasePage {
         clickSavePetButton();
     }
 
+    @Step("Press button 'Add' ")
     public void clickAddPetButton() {
         WebElement addPetBtn = waitUntilClickable("Add Button", addBtn);
 //addPetBtn.clear();
@@ -45,14 +49,16 @@ public class PetsPage extends BasePage {
         addPetBtn.click();
     }
 
+    @Step ("Verify that section 'Add pet type' is expanded")
     public void ifButtonDisabledPressAdd() {
         try {
             driver.findElement(nameId);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             clickAddPetButton();
         }
     }
 
+    @Step("Press button 'Save' from section 'New Pet Type'")
     public void clickSavePetButton() {
         WebElement savePet = driver.findElement(saveBtn);
         waitUntilClickable("Save Button", saveBtn);
@@ -64,7 +70,7 @@ public class PetsPage extends BasePage {
         return verifyBtnIsDisabled(saveBtn);
     }
 
-
+    @Step("Get pet type List")
     public List<String> getPetTypeList() {
 
         waitUntilTableVisible(tableId);
@@ -81,9 +87,11 @@ public class PetsPage extends BasePage {
     }
 
 
+    @Step("Delete from Pet type value ={petName}")
     public void pressDeletePet(String petName) {
         int i = 0;
         List<WebElement> petTypesElements = driver.findElements(petRowId);
+
         for (WebElement namePet : petTypesElements
         ) {
             i++;

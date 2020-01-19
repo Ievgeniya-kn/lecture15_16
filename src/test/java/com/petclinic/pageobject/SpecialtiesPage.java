@@ -1,5 +1,6 @@
 package com.petclinic.pageobject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,29 +25,31 @@ public class SpecialtiesPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open page /specialties")
     public SpecialtiesPage openPage() {
         goToUrl("/specialties", "Specialties");
         WebElement addButton = waitUntilElementVisible("Add button", addBtn);
         return this;
     }
-
+    @Step("Add specialist with name = {name} ")
     public void addSpeciality(String name) {
         WebElement nameField = driver.findElement(nameId);
         nameField.clear();
         nameField.sendKeys(name);
         clickSaveSpecialitiestButton();
     }
-
+    @Step("Press button 'Add' ")
     public void clickAddSpecialitiestButton() {
         WebElement addSpecialitiestBtn = waitUntilClickable("Add Button", addBtn);
         addSpecialitiestBtn.click();
     }
-
+    @Step("Press button 'Save' ")
     public void clickSaveSpecialitiestButton() {
         WebElement saveSpecialitiest = waitUntilClickable("Save button", saveBtn);
         saveSpecialitiest.click();
     }
 
+    @Step("Recheck if button Add is disabled")
     public void ifButtonDisabledPressAdd() {
         try {
             driver.findElement(nameId);
@@ -60,6 +63,7 @@ public class SpecialtiesPage extends BasePage {
         return verifyBtnIsDisabled(saveBtn);
     }
 
+    @Step("Get all Specialist List")
     public List<String> getSpecTypeList() {
 
         List<String> specialities = new ArrayList<>();
@@ -73,7 +77,7 @@ public class SpecialtiesPage extends BasePage {
 
         return specialities;
     }
-
+    @Step("Delete Specialist name = {oldName}")
     public void pressDeleteSpecialialities(String oldName) {
         int i = 0;
         List<WebElement> specTypesElements = driver.findElements(specRowId);

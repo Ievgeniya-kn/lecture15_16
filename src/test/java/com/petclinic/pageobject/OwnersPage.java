@@ -1,5 +1,6 @@
 package com.petclinic.pageobject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,8 @@ import com.petclinic.Owner;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OwnersPage extends BasePage {
     private By addOwnerBtnPath = By.xpath("//*[text()='Add Owner']");
@@ -16,11 +19,13 @@ public class OwnersPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open page /owners")
     public OwnersPage openPage() {
         goToUrl("/owners", "Owners");
         return this;
     }
 
+    @Step
     public List<String> getOwnersNames() {
         List<String> owners = new ArrayList<>();
         waitUntilTableVisible(ownersTablePath);
@@ -32,6 +37,7 @@ public class OwnersPage extends BasePage {
         return owners;
     }
 
+    @Step("Get owner's list")
     public List<Owner> getOwnersList() {
         List<Owner> owners = new ArrayList<>();
         WebElement ownersTable = driver.findElement(By.xpath("//*[@class='table-responsive']"));
@@ -44,6 +50,7 @@ public class OwnersPage extends BasePage {
         return owners;
     }
 
+    @Step("Press button'Add Owner'")
     public NewOwnerPage clickAddOwnerBtn() {
         WebElement addOwnerBtn = driver.findElement(addOwnerBtnPath);
         waitUntilClickable("Add Owner", addOwnerBtnPath);
@@ -51,6 +58,7 @@ public class OwnersPage extends BasePage {
         return new NewOwnerPage(driver);
     }
 
+    @Step("Get  Owner from List")
     private Owner createOwner(WebElement userRow) {
         Owner owner = new Owner();
         String fullName = userRow.findElement(By.xpath("./td/a")).getText();
@@ -73,4 +81,9 @@ public class OwnersPage extends BasePage {
         return owner;
     }
 
+    @Step("Verify New Owner is present in Owner's List")
+    public void verifyOwnersListContainsNewlyAdded(Owner owner)  {
+        List<Owner> ownersNames = getOwnersList();
+        assertThat(ownersNames).contains(owner);
+    }
 }

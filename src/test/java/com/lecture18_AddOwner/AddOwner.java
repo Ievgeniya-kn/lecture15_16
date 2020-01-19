@@ -1,6 +1,8 @@
 package com.lecture18_AddOwner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -58,6 +60,10 @@ public class AddOwner {
          address.sendKeys("23 Oak Road");
          phone.sendKeys("123456");
          submit.click();
+        WebDriverWait waitFor = new WebDriverWait(driver,1);
+        waitFor.withMessage("Owners" + " page is not open!")
+                .until(ExpectedConditions.textToBe(By.xpath("//h2"), "Owners"));
+
          String currentUrl = driver.getCurrentUrl();
          assertEquals(currentUrl,"http://139.59.149.247:8000/petclinic/owners");
     }
