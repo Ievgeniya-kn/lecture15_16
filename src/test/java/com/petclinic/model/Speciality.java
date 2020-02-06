@@ -2,7 +2,9 @@ package com.petclinic.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class speciality {
+import java.util.Objects;
+
+public class Speciality {
 
     @JsonProperty("id")
     private Integer id;
@@ -31,5 +33,18 @@ public class speciality {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Speciality that = (Speciality) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
