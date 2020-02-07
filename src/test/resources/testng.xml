@@ -1,13 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite Test Hometasks" parallel="classes" thread-count="2">
+<suite name="Suite Test Hometasks">
 
     <test name="Pet Clinic">
         <classes>
-            <class name="com.petclinic.NewOwnersTest"/>
-            <class name="com.petclinic.NewVeterinarianTest"/>
             <class name="com.petclinic.NewPetTest"/>
-            <class name="com.petclinic.NewSpecialityTest"/>
         </classes>
     </test>
 </suite>

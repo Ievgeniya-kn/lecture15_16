@@ -29,6 +29,7 @@ public class TestBase {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         driver = new ChromeDriver(options);
+//        driver = new ChromeDriver();
 //        driver = new Configuration().initDriver();
         driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
     }
