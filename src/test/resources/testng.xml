@@ -4,7 +4,10 @@
 
     <test name="Pet Clinic">
         <classes>
+            <class name="com.petclinic.NewOwnersTest"/>
             <class name="com.petclinic.NewPetTest"/>
+            <class name="com.petclinic.NewSpecialityTest"/>
+            <class name="com.petclinic.NewVeterinarianTest"/>
         </classes>
     </test>
 </suite>
